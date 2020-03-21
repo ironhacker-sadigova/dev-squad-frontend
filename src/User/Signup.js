@@ -1,6 +1,6 @@
 
 import React, { Component } from "react";
-
+import axios from 'axios';
 
 class Signup extends Component {
     constructor() {
@@ -13,11 +13,11 @@ class Signup extends Component {
             open: false,
             recaptcha: false
         };
+        
     }
 
     // This will take the name as parameter , and the arrow function will return another function
     // as the input changes, they will be available on the event target
-
     handleChange = name => event => {
       
         this.setState({ error: "" }); 
@@ -25,8 +25,11 @@ class Signup extends Component {
         // based on the input we populate the field
     };
 
+
+    // it will enable to check if its not a robot , easiest way, but will change it later to image recognition maybe
     recaptchaHandler = e => {
         this.setState({ error: "" });
+ 
         let userDay = e.target.value.toLowerCase();
         let dayCount;
 
@@ -56,7 +59,39 @@ class Signup extends Component {
             return false;
         }
     };
+    clickSubmit = event => {
+      event.preventDefault();
+      const { name, email, password } = this.state;
+      const user = {
+          name,
+          email,
+          password
+      };
 
+
+      this.signup(user).then(data => {
+          if (user.error) this.setState({ error: user.error });
+          else
+              this.setState({
+                  error: "",
+                  name: "",
+                  email: "",
+                  password: "",
+                  open: true
+              });
+      });
+  };
+
+      signup = user => {
+
+            return axios.post("http://localhost:8000/signup")
+                        .then(user)
+                        .catch(function(error){
+                          console.log(error);
+                        });
+                      };
+          
+      
     
     signupForm = (name, email, password, recaptcha) => (
         <form>
@@ -74,31 +109,31 @@ class Signup extends Component {
               <form action="#">
                 <div className="form-group">
 
-                  <label for="username">Username</label>
+                  <label className="username">Username</label>
                   <input 
                   className="form-control"
-                   onChange = {this.handleChange("name")} type="text" name="username" id="username" placeholder="iron.hacker"  required value={name} />
+                   onChange = {this.handleChange("name")} type="text" name="username" id="username" placeholder="iron.hacker"  r value={name} required />
                 </div>
 
                 <div className="form-group">
-                  <label for="email">Email</label>
+                  <label className="email">Email</label>
                   <input className="form-control" onChange={this.handleChange("email")} type="email" name="email" id="email" placeholder="dev.squad@gmail.com" required value={email} />
                 </div>
 
                 <div className="form-group">
-                  <label for="password">Password</label>
+                  <label classname="password">Password</label>
                   <input className="form-control" onChange={this.handleChange("password")} 
                   type="password" name="password" id="password" placeholder="********" required value={this.state.password} />
                 </div>
 
                 <div className="form-group">
-                  <label for="passwordRepeat">Repeat Password</label>
+                  <label className="passwordRepeat">Repeat Password</label>
                   <input className="form-control"  onChange={this.handleChange("password")} type="password" name="passwordRepeat" id="passwordRepeat" placeholder="********" required />
                 </div>
 
                 <div className="form-group">
                 <label className="text-muted">
-                 {recaptcha ? "Thanks. You got it!" : "What day is today?"} 
+                 {recaptcha ? "Thank you, that's right" : "What day of the week is it today?"} 
                 </label>
 
                 <input
@@ -111,7 +146,7 @@ class Signup extends Component {
                 <div className="m-t-lg">
                   <ul className="list-inline">
                     <li>
-                      <input className="btn btn--form" type="submit" value="Register" />
+                      <input className="btn btn--form" onClick={this.clickSubmit} type="submit" value="Register" />
                     </li>
                     
                   </ul>
@@ -119,7 +154,7 @@ class Signup extends Component {
               </form>  
             </div>
           </div>
-        </form>
+    </form> 
     );
 
     render() {
