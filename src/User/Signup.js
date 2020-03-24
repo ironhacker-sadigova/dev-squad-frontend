@@ -1,5 +1,4 @@
-
-import React, { Component } from "react";
+ import React, { Component } from "react";
 import axios from 'axios';
 
 class Signup extends Component {
@@ -127,11 +126,6 @@ class Signup extends Component {
                 </div>
 
                 <div className="form-group">
-                  <label className="passwordRepeat">Repeat Password</label>
-                  <input className="form-control"  onChange={this.handleChange("password")} type="password" name="passwordRepeat" id="passwordRepeat" placeholder="********" required />
-                </div>
-
-                <div className="form-group">
                 <label className="text-muted">
                  {recaptcha ? "Thank you, that's right" : "What day of the week is it today?"} 
                 </label>
@@ -178,7 +172,7 @@ class Signup extends Component {
                     className="alert alert-info"
                     style={{ display: open ? "" : "none" }}
                 >
-                    New account is successfully created. Please{" "}
+                    New account is successfully created. Please {"signin"}
                 </div>
 
                 {this.signupForm(name, email, password, recaptcha)}
@@ -187,4 +181,5 @@ class Signup extends Component {
     }
 }
 
-export default Signup;
+export default Signup; 
+
