@@ -1,6 +1,48 @@
 
-/* SIGNUP */
-@function remy($value) {
+.menu {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  margin: 2px auto;
+  background: #333;
+  font-size:0;
+}
+.menu a {
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+  width: 25%; /* 100% divided of number of elements */
+  box-sizing: border-box;
+  padding: 5px 5px;
+  color: #fff;
+  text-decoration: none;
+  text-align:center;
+  font-size: 14px;
+}
+.marca {
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  left: -30%; /* at least width of .menu a */
+  width: 25%;
+  height: 40px;
+  box-sizing: border-box;
+  background: #fff;
+  opacity:.5;
+  transition: 0.5s ease-in-out;
+}
+.menu a:nth-child(1):hover ~ .marca {
+  left: 0%; 
+}
+.menu a:nth-child(2):hover ~ .marca {
+  left: 25%; /* 1/4 total width */
+}
+.menu a:nth-child(3):hover ~ .marca {
+  left: 50%; /* 2/4 total width */
+}
+.menu a:nth-child(4):hover ~ .marca {
+  left: 75%; /* 3/4 total width */
+}/* SIGNUP */ @function remy($value) {
   @return ($value / 16px) * 1rem;
 }
 
@@ -121,3 +163,4 @@ label {
   &:focus,
   &:hover {color: darken(#999, 13%);}
 }
+

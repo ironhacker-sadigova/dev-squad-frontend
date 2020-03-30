@@ -1,5 +1,6 @@
- import React, { Component } from "react";
-import axios from 'axios';
+
+import React, { Component } from "react";
+
 
 class Signup extends Component {
     constructor() {
@@ -9,91 +10,93 @@ class Signup extends Component {
             email: "",
             password: "",
             error: "",
-            open: false,
-            recaptcha: false
+            open: false
         };
-        
     }
-
     // This will take the name as parameter , and the arrow function will return another function
     // as the input changes, they will be available on the event target
+
     handleChange = name => event => {
-      
-        this.setState({ error: "" }); 
-        this.setState({ [name]: event.target.value });
-        // based on the input we populate the field
-    };
-
-
-    // it will enable to check if its not a robot , easiest way, but will change it later to image recognition maybe
-    recaptchaHandler = e => {
         this.setState({ error: "" });
- 
-        let userDay = e.target.value.toLowerCase();
-        let dayCount;
-
-        if (userDay === "sunday") {
-            dayCount = 0;
-        } else if (userDay === "monday") {
-            dayCount = 1;
-        } else if (userDay === "tuesday") {
-            dayCount = 2;
-        } else if (userDay === "wednesday") {
-            dayCount = 3;
-        } else if (userDay === "thursday") {
-            dayCount = 4;
-        } else if (userDay === "friday") {
-            dayCount = 5;
-        } else if (userDay === "saturday") {
-            dayCount = 6;
-        }
-
-        if (dayCount === new Date().getDay()) {
-            this.setState({ recaptcha: true });
-            return true;
-        } else {
-            this.setState({
-                recaptcha: false
-            });
-            return false;
-        }
+        this.setState({ [name]: event.target.value });
     };
+
     clickSubmit = event => {
-      event.preventDefault();
-      const { name, email, password } = this.state;
-      const user = {
-          name,
-          email,
-          password
-      };
+        event.preventDefault();
+        const { name, email, password } = this.state;
+        const user = {
+            name,
+            email,
+            password
+        };
+        // console.log(user);
+        this.signup(user).then(data => {
+            if (data.error) this.setState({ error: data.error });
+            else
+                this.setState({
+                    error: "",
+                    name: "",
+                    email: "",
+                    password: "",
+                    open: true
+                });
+        });
+    };
 
+    signup = user => {
+        return fetch("http://localhost:8000/signup", {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(user)
+        })
+            .then(response => {
+                return response.json();
+            })
+            .catch(err => console.log(err));
+    };
 
-      this.signup(user).then(data => {
-          if (user.error) this.setState({ error: user.error });
-          else
-              this.setState({
-                  error: "",
-                  name: "",
-                  email: "",
-                  password: "",
-                  open: true
-              });
-      });
-  };
+    signupForm = (name, email, password) => (
+       /* <form>
+            <div className="form-group">
+                <label className="text-muted">Name</label>
+                <input
+                    onChange={this.handleChange("name")}
+                    type="text"
+                    className="form-control"
+                    value={name}
+                />
+            </div>
+            <div className="form-group">
+                <label className="text-muted">Email</label>
+                <input
+                    onChange={this.handleChange("email")}
+                    type="email"
+                    className="form-control"
+                    value={email}
+                />
+            </div>
+            <div className="form-group">
+                <label className="text-muted">Password</label>
+                <input
+                    onChange={this.handleChange("password")}
+                    type="password"
+                    className="form-control"
+                    value={password}
+                />
+            </div>
+            <button
+                onClick={this.clickSubmit}
+                className="btn btn-raised btn-primary"
+            >
+                Submit
+            </button>
+        </form>
 
-      signup = user => {
-
-            return axios.post("http://localhost:8000/signup")
-                        .then(user)
-                        .catch(function(error){
-                          console.log(error);
-                        });
-                      };
-          
-      
-    
-    signupForm = (name, email, password, recaptcha) => (
-        <form>
+*/ 
+<form>
             <div className="signup__container">
             <div className="container__child signup__thumbnail">
               <div className="thumbnail__logo">
@@ -126,15 +129,9 @@ class Signup extends Component {
                 </div>
 
                 <div className="form-group">
-                <label className="text-muted">
-                 {recaptcha ? "Thank you, that's right" : "What day of the week is it today?"} 
-                </label>
+              
 
-                <input
-                    onChange={this.recaptchaHandler}
-                    type="text"
-                    className="form-control"
-                />
+                
             </div>
       
                 <div className="m-t-lg">
@@ -149,17 +146,15 @@ class Signup extends Component {
             </div>
           </div>
     </form> 
-    );
+
+);
+
 
     render() {
-        const { name, email, password, error, open, recaptcha } = this.state;
+        const { name, email, password, error, open } = this.state;
         return (
             <div className="container">
                 <h2 className="mt-5 mb-5">Signup</h2>
-
-                
-                <hr />
-                <br />
 
                 <div
                     className="alert alert-danger"
@@ -172,14 +167,13 @@ class Signup extends Component {
                     className="alert alert-info"
                     style={{ display: open ? "" : "none" }}
                 >
-                    New account is successfully created. Please {"signin"}
+                    New account is successfully created. Please Sign In.
                 </div>
 
-                {this.signupForm(name, email, password, recaptcha)}
+                {this.signupForm(name, email, password)}
             </div>
         );
     }
 }
 
-export default Signup; 
-
+export default Signup;
