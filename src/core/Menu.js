@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link, withRouter} from 'react-router-dom'; // withRouter takes another component as an argument
-import {signout, authenticate} from '../auth';
+import {signout, isAuthenticated} from '../auth';
+
 
 
 // to show links in a different color if visited
@@ -12,7 +13,7 @@ const isActive = (history, path) => {
 //A method : if the token is there , we have the token & we can use this info to show & hide the links
 // if not just return false
 
-export const isAuthenticated = (jwt, next) => { // if the token is there we have everything in the json webtoken
+/*export const isAuthenticated = (jwt, next) => { // if the token is there we have everything in the json webtoken
     if (typeof window !== "undefined") { 
         // as long as there is window object we can do something else false
         return false}
@@ -24,7 +25,7 @@ export const isAuthenticated = (jwt, next) => { // if the token is there we have
                return false
            } 
    
-    };
+    };*/
 
 /*
 //LOG THE USER OUT
@@ -47,7 +48,7 @@ export const signout = next => { // we are going to execute & do a callback to r
 
 
 
-
+/*
 
 // We can create a functional component, we don't need a class its gonna be without state
 
@@ -59,7 +60,15 @@ const Menu = ({history}) => (
                         <a href="">        <Link style={isActive(history,'/signup')} to = "/signup"> Join  </Link> </a>
                         <a href="">        <Link style={isActive(history,"/signin")} to = "/signin"> Members </Link>   </a>
                         <a href="" style={(isActive(history,"/signout"))} onClick={()=> signout(()=> history.push("/"))}>   Exit   </a>
-                        <a href="">         {isAuthenticated().user} </a>
+                        
+                        <a href="">       
+                        
+                         <Link
+                            to={`/user/${isAuthenticated().user._id}`}
+                            style={{ color: "#ffff" }}
+                        >
+                            {`${isAuthenticated().user.name}'s profile`}
+                        </Link>    </a>
 
         
         <div className="marca"></div>
@@ -71,6 +80,51 @@ const Menu = ({history}) => (
 
 
 
-export default withRouter (Menu); 
+export default withRouter (Menu); */
+
+
+const Menu = ({ history }) => (
+    <div>
+            <a href="">        <Link style={isActive(history,"/")} to = "/"> Home  </Link>  </a>                            
+
+
+            {!isAuthenticated() && (
+                <>
+                <a href="">        <Link style={isActive(history,'/signup')} to = "/signup"> Join  </Link> </a>
+
+                <a href="">        <Link style={isActive(history,"/signin")} to = "/signin"> Members </Link>   </a>
+
+                </> 
+            )}
+
+            {isAuthenticated() && (
+                <>
+
+                <a href="" 
+                    style={
+                                (isActive(history, "/signup"))
+                            }
+                            onClick={() => signout(() => history.push("/"))}>  Exit   </a>
+
+                
+                    <a href="">
+                        <Link
+                            to={`/user/${isAuthenticated().user._id}`}
+                            style={{ color: "#ffff" }}
+                        >
+                            {`${isAuthenticated().user.name}`}
+                        </Link>                    
+
+                    </a> 
+                </>           
+
+            )}
+
+   <div className="marca"></div> 
+   
+   </div>
+);
+
+export default withRouter(Menu);
 
 
