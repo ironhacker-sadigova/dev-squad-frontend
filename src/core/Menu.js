@@ -85,6 +85,8 @@ export default withRouter (Menu); */
 
 const Menu = ({ history }) => (
     <div>
+            <div className="menu">
+
             <a href="">        <Link style={isActive(history,"/")} to = "/"> Home  </Link>  </a>                            
 
 
@@ -122,7 +124,7 @@ const Menu = ({ history }) => (
 
    <div className="marca"></div> 
    
-   </div>
+   </div> </div>
 );
 
 export default withRouter(Menu);
