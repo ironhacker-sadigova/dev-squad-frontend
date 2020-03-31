@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link, withRouter} from 'react-router-dom'; // withRouter takes another component as an argument
+import {signout, authenticate} from '../auth';
 
 
 // to show links in a different color if visited
@@ -25,7 +26,7 @@ export const isAuthenticated = (jwt, next) => { // if the token is there we have
    
     };
 
-
+/*
 //LOG THE USER OUT
 
 export const signout = next => { // we are going to execute & do a callback to redirect to another page
@@ -41,6 +42,7 @@ export const signout = next => { // we are going to execute & do a callback to r
         .catch(err => console.log(err)); // catch if any error 
 };
 
+*/
 
 
 
@@ -69,4 +71,6 @@ const Menu = ({history}) => (
 
 
 
-export default withRouter (Menu);
+export default withRouter (Menu); 
+
+

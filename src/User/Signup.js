@@ -1,5 +1,6 @@
 
 import React, { Component } from "react";
+import {signup} from '../auth';
 
 
 class Signup extends Component {
@@ -30,7 +31,7 @@ class Signup extends Component {
             password
         };
         // console.log(user);
-        this.signup(user).then(data => {
+        signup(user).then(data => {
             if (data.error) this.setState({ error: data.error });
             else
                 this.setState({
@@ -43,7 +44,7 @@ class Signup extends Component {
         });
     };
 
-    signup = user => {
+    /* signup = user => {
         return fetch("http://localhost:8000/signup", {
             method: "POST",
             headers: {
@@ -57,6 +58,8 @@ class Signup extends Component {
             })
             .catch(err => console.log(err));
     };
+
+    */
 
     signupForm = (name, email, password) => (
        /* <form>

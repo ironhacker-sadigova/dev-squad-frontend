@@ -3,6 +3,7 @@
 
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
+import {signin, authenticate} from '../auth';
 
 class Signin extends Component {
     constructor() {
@@ -22,13 +23,15 @@ class Signin extends Component {
          // based on the input we populate the field
     };
 
+
+    /*
     authenticate(jwt, next) {
         if (typeof window !== "undefined") {
             localStorage.setItem("jwt", JSON.stringify(jwt));// access localStorage & grab the token
             next();
         }
     }
-
+*/
     clickSubmit = event => {
         event.preventDefault();
         const { email, password } = this.state;
@@ -37,19 +40,19 @@ class Signin extends Component {
             password
         };
         console.log(user);
-        this.signin(user).then(data => {
+        signin(user).then(data => {
             if (data.error) {
                 this.setState({ error: data.error });
             } else {
                 // authenticate
-                this.authenticate(data, () => {
+                authenticate(data, () => {
                     this.setState({ redirectToReferer: true });
                 });
             }
         });
     };
 
-    signin = user => {
+   /* signin = user => {
         return fetch("http://localhost:8000/signin", {
             method: "POST",
             headers: {
@@ -62,7 +65,7 @@ class Signin extends Component {
                 return response.json();
             })
             .catch(err => console.log(err));
-    };
+    }; */
 
     signinForm = (email, password) => (
         <form>
