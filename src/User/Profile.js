@@ -4,7 +4,9 @@ import React, { Component } from "react";
 import { isAuthenticated } from "../auth";
 import { Redirect,Link } from "react-router-dom";
 
-import {read} from "./apiUser" //; to connect to the back 
+import {read} from "./apiUser" //; to connect to the back
+import Avatar from '../images/avatar.png';
+
 
 
 
@@ -65,43 +67,104 @@ class Profile extends Component {
                 }
             }); */
     }
+    
+    componentWillReceiveProps(props) {
+        const userId = props.match.params.userId;
+        this.init(userId);
+    }
 
-    render() {
+
+   render() {
         const { redirectToSignin, user } = this.state;
         if (redirectToSignin) return <Redirect to="/signin" />;
 
-        return (
-            <div className="container">
-                <div className="row">
-                    <div className="col-md-6">
-                        <h2 className="mt-5 mb-5">Profile</h2>
-                        <p>Hello {isAuthenticated().user.name}</p>
-                        <p>Email: {isAuthenticated().user.email}</p>
-                        <p>{`Joined ${new Date(
-                            user.created
-                        ).toDateString()}`}</p>
-                    </div>
-
-                    <div className="col-md-6">
-                        {isAuthenticated().user &&
-                            isAuthenticated().user._id == user._id && (
-                                <div className="d-inline-block mt-5">
-                                    <Link
-                                        className="btn btn-raised btn-success mr-5"
-                                        to={`/user/edit/${user._id}`}
-                                    >
-                                        Edit Profile
-                                    </Link>
-                                    <button className="btn btn-raised btn-danger">
-                                        Delete Profile
-                                    </button>
-                                </div>
-                            )}
-                    </div>
+       return (
+              <div className="user-profile-card">
+                <div className="user-profile-header">
                 </div>
-            </div>
+                <div class="user-profile-avatar text-center">
+                        <img src={Avatar} alt={user.name} className="profile" />         </div>
+                <div className="row">
+                  <div className="text-center">
+                    <h4> {user.name}</h4>
+                    <small>{`Joined ${new Date(
+                            user.created
+                        ).toDateString()}`}</small>
+                    <br />
+                 
+
+                  <div className="container">
+                    <p>
+                      <small>{user.email}</small>
+                    </p>
+                    </div>
+                  </div>
+                </div>
+                
+                 {isAuthenticated().user &&
+                            isAuthenticated().user._id == user._id && (
+                                <div className="">
+                                    <Link
+                                        
+                                        to={`/user/edit/${user._id}`}
+                                    >
+                                       
+                                    <button className="">
+                                       Edit Profile
+                                    </button>
+
+                                    </Link>
+                                    <button className="">
+                                        Delete Profile
+                                    </button>
+                                </div>
+                            )}
+                  
+
+
+                </div>
+            
+ 
+            
         );
     }
 }
+
+
+
+
+
+/*
+
+     <div className="col-md-6">
+                        {isAuthenticated().user &&
+                            isAuthenticated().user._id == user._id && (
+                                <div className="d-inline-block mt-5">
+                                    <Link
+                                        className="btn btn-raised btn-success mr-5"
+                                        to={`/user/edit/${user._id}`}
+                                    >
+                                        Edit Profile
+                                    </Link>
+                                    <button className="btn btn-raised btn-danger">
+                                        Delete Profile
+                                    </button>
+                                </div>
+                            )}
+                    </div>
+                </div>
+            </div>
+            
+        );
+    }
+}
+
+
+
+*/
+
+
+
+
 
 export default Profile;
