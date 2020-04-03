@@ -88,6 +88,7 @@ const Menu = ({ history }) => (
             <div className="menu">
 
             <a href="">        <Link style={isActive(history,"/")} to = "/"> Home  </Link>  </a>                            
+            <a href="">        <Link style={isActive(history,"/users")} to = "/users"> Developers  </Link>  </a>                            
 
 
             {!isAuthenticated() && (
@@ -112,7 +113,7 @@ const Menu = ({ history }) => (
                     <a href="">
                         <Link
                             to={`/user/${isAuthenticated().user._id}`}
-                            style={{ color: "#ffff" }}
+                            style= {isActive(history,`/user/${isAuthenticated().user._id}`)}
                         >
                             {`${isAuthenticated().user.name}`}
                         </Link>                    
