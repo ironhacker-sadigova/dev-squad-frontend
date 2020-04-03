@@ -2,6 +2,7 @@
     import React, { Component } from "react";
     import { list } from "./apiUser";
     import {Link} from "react-router-dom";
+    import Avatar from '../images/avatar.png';
     
     
     class Users extends Component {
@@ -31,7 +32,7 @@
                     <figure className="snip1336">
       <img src="https://images.unsplash.com/photo-1504190914346-e26a4e1d0ec2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" alt="sample87" />
       <figcaption>
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/profile-sample4.jpg" alt={user.name} className="profile" />
+        <img src={Avatar} alt={user.name} className="profile" />
         <h2>{user.name} </h2>
         <p> {user.email} </p>
         
