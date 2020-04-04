@@ -4,8 +4,9 @@ import React, { Component } from "react";
 import { isAuthenticated } from "../auth";
 import { Redirect,Link } from "react-router-dom";
 
-import {read} from "./apiUser" //; to connect to the back
+import {read} from "./apiUser"; //; to connect to the back
 import Avatar from '../images/avatar.png';
+import DeleteUser from "./DeleteUser";
 
 
 
@@ -68,6 +69,9 @@ class Profile extends Component {
             }); */
     }
     
+    // when we navigate around the component will receive props
+    // we need to grab that change and make a get request to the back 
+    // we use componentWillReceiveProps available with router-react-dom
     componentWillReceiveProps(props) {
         const userId = props.match.params.userId;
         this.init(userId);
@@ -114,9 +118,7 @@ class Profile extends Component {
                                     </button>
 
                                     </Link>
-                                    <button className="">
-                                        Delete Profile
-                                    </button>
+                                    <DeleteUser userId={user._id}/>
                                 </div>
                             )}
                   
