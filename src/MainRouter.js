@@ -8,6 +8,7 @@ import Signup from "./User/Signup";
 import Signin from "./User/Signin";
 import Profile from "./User/Profile";
 import Users from "./User/Users";
+import EditProfile from "./User/EditProfile";
 
 const MainRouter = () => (
     <div>
@@ -18,6 +19,7 @@ const MainRouter = () => (
             <Route exact path="/users" component={Users}/>
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/signin" component={Signin} />
+            <Route exact path="/user/edit/:userId" component={EditProfile} />
             <Route exact path="/user/:userId" component={Profile} /> 
             
          

@@ -67,7 +67,7 @@ const Menu = ({ history }) => (
             )}
             {isAuthenticated() && (
                 <>
-                <a href="" 
+                <a href="/" 
                     style={
                                 (isActive(history, "/signup"))
                             }
