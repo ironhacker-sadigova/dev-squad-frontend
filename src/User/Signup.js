@@ -118,7 +118,7 @@ class Signup extends Component {
                   <label className="username">Username</label>
                   <input 
                   className="form-control"
-                   onChange = {this.handleChange("name")} type="text" name="username" id="username" placeholder="iron.hacker"  r value={name} required />
+                   onChange = {this.handleChange("name")} type="text" name="username" id="username" placeholder="iron.hacker"   value={name} required />
                 </div>
 
                 <div className="form-group">
@@ -127,7 +127,7 @@ class Signup extends Component {
                 </div>
 
                 <div className="form-group">
-                  <label classname="password">Password</label>
+                  <label className="password">Password</label>
                   <input className="form-control" onChange={this.handleChange("password")} 
                   type="password" name="password" id="password" placeholder="********" required value={this.state.password} />
                 </div>

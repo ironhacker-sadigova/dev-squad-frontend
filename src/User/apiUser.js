@@ -1,5 +1,5 @@
 export const read = (userId, token) => {
-    return fetch(`${process.env.REACT_APP_API_URL}/user/${userId}`, {
+    return fetch(`${process.env.REACT_APP_API_URL|| ""}/user/${userId}`, {
         method: "GET",
         headers: {
             Accept: "application/json",
@@ -19,7 +19,7 @@ export const read = (userId, token) => {
 };
 
 export const list = () => {
-    return fetch(`${process.env.REACT_APP_API_URL}/users`, {
+    return fetch(`${process.env.REACT_APP_API_URL|| ""}/users`, {
         method: "GET"
     })
         .then(response => {
@@ -30,7 +30,7 @@ export const list = () => {
 
 
 export const removeUser = (userId, token) => {
-    return fetch(`${process.env.REACT_APP_API_URL}/user/${userId}`, {
+    return fetch(`${process.env.REACT_APP_API_URL|| ""}/user/${userId}`, {
         method: "DELETE",
         headers: {
             Accept: "application/json",
