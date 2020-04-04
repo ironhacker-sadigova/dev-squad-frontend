@@ -106,7 +106,7 @@ class Profile extends Component {
                 </div>
                 
                  {isAuthenticated().user &&
-                            isAuthenticated().user._id == user._id && (
+                            isAuthenticated().user._id === user._id && (
                                 <div className="">
                                     <Link
                                         
