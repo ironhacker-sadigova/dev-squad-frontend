@@ -25,7 +25,19 @@ class Users extends Component {
             {users.map((user, i) => (
                 <div className="row" key={i}>
                 <figure className="snip1336">
-  <img src={DevBackground} alt="sample87" />
+
+                <img
+                        style={{width: "auto" }}
+                        className="img-thumbnail"
+                        src={`${process.env.REACT_APP_API_URL|| ""}/user/photo/${
+                            user._id
+                        }`}
+                        onError={i => (i.target.src = `${DevBackground}`)}
+                        alt={user.name}
+                    />
+
+
+
   <figcaption>
     <img src={Avatar} alt={user.name} className="profile" />
     <h2>{user.name} </h2>

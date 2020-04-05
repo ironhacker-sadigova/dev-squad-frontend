@@ -8,6 +8,7 @@ import DeleteUser from "./DeleteUser";
 // if not loged in user redirect to signin 
 // set the state to false by default 
 class Profile extends Component {
+    
     constructor() {
         super();
         this.state = {
@@ -70,12 +71,28 @@ class Profile extends Component {
    render() {
         const { redirectToSignin, user } = this.state;
         if (redirectToSignin) return <Redirect to="/signin" />;
+    
+    
+        const photoUrl = user._id|| ""
+        ? `${process.env.REACT_APP_API_URL|| ""}/user/photo/${
+              user._id
+          }?${new Date().getTime()}`
+        : Avatar;
+
        return (
               <div className="user-profile-card">
                 <div className="user-profile-header">
                 </div>
                 <div className="user-profile-avatar text-center">
-                        <img src={Avatar} alt={user.name} className="profile" />         </div>
+                        
+                <img
+                            style={{ height: "200px", width: "auto" }}
+                            className="profile"
+                            src={photoUrl}
+                            onError={i => (i.target.src = `${Avatar}`)}
+                            alt={user.name}
+                        />                        
+                             </div>
                 <div className="row">
                   <div className="text-center">
                     <h4> {user.name}</h4>

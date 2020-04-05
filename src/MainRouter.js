@@ -1,4 +1,3 @@
-
 /*
 import React from "react";
 import { Route, Switch } from "react-router-dom";
@@ -9,10 +8,8 @@ import Signin from "./User/Signin";
 import Profile from "./User/Profile";
 import Users from "./User/Users";
 import EditProfile from "./User/EditProfile";
-
 const MainRouter = () => (
     <div>
-
     <Menu/>
         <Switch>
             <Route exact path="/" component={Home} />
@@ -23,11 +20,9 @@ const MainRouter = () => (
             <Route exact path="/user/:userId" component={Profile} /> 
             
          
-
         </Switch>
     </div>
 );
-
 export default MainRouter;*/
 
 
