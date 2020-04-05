@@ -38,6 +38,16 @@ export const authenticate = (jwt, next) => {
     }
 };
 
+export const setName = (name, next) => {
+    if (typeof window !== "undefined") {
+        localStorage.setItem("username", JSON.stringify(name));
+        next();
+    }
+};
+
+
+
+
 //LOG THE USER OUT
 
 export const signout = next => {// we are going to execute & do a callback to redirect to another page
