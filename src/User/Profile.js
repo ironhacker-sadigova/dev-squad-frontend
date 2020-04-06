@@ -4,6 +4,7 @@ import { Redirect,Link } from "react-router-dom";
 import {read} from "./apiUser"; //; to connect to the back
 import Avatar from '../images/avatar.png';
 import DeleteUser from "./DeleteUser";
+import FollowProfileButton from "./FollowProfileButton";
 // We will create a state with user & redirect 
 // if not loged in user redirect to signin 
 // set the state to false by default 
@@ -12,17 +13,54 @@ class Profile extends Component {
     constructor() {
         super();
         this.state = {
-            user: "",
-            redirectToSignin: false
+            user: { following: [], followers: []},
+            redirectToSignin: false,
+            following:false,
+            error:""
         };
     }
+
+  // check follow 
+  // IT WILL CHECK & RETURN FALSE OR TRUE 
+  // Check if the user in the state has followers and we find each follower 
+  // Then we return follower._id === jwt.user._id & match which will be either true or false
+
+  checkFollow = user => {
+    const jwt = isAuthenticated();
+    const match = user.followers.find(follower => {
+        return follower=== jwt.user;
+    });
+    return match;
+};
+
+// WILL TAKE AN ARGUMENT SO A FUNCTION
+// WILL DO A POST REQUEST TO THE BACKEND 
+// IT WILL BE CREATED IN THE API USER
+// PARENT COMPONENT AND NOT CHILD IN ORDER TO BE ABLE TO CHANGE THE STATE
+clickFollowButton = callApi => {// either follow or unfollow
+    const userId = isAuthenticated().user._id; //grab user id
+    const token = isAuthenticated().token;
+
+    callApi(userId, token, this.state.user._id)
+    .then(data => {
+        if (data.error) {
+            this.setState({ error: data.error });
+        } else {
+            this.setState({ user: data, following: !this.state.following });
+        }
+    });
+};
+
+
+
     init = userId => {
         const token = isAuthenticated().token;
         read(userId, token).then(data => {
             if (data.error) {
                 this.setState({ redirectToSignin: true });
             } else {
-                this.setState({ user: data });
+                let following = this.checkFollow(data);
+                this.setState({ user: data, following });
             }
         });
     };
@@ -108,47 +146,40 @@ class Profile extends Component {
                   </div>
                 </div>
                  {isAuthenticated().user &&
-                            isAuthenticated().user._id === user._id && (
+                            isAuthenticated().user._id === user._id ? (
                                 <div className="">
                                     <Link
                                         
                                         to={`/user/edit/${user._id}`}
                                     >
                                        
+
+                                       <div className="row">
+                    <div className="col md-12 mt- mb-5">
+                        <hr />
+                        <p className="lead">{user.about}</p>
+                        <hr />
+                    </div>
+                </div>
+
+
+                                       
                                     <button className="">
                                        Edit Profile
                                     </button>
                                     </Link>
                                     <DeleteUser userId={user._id}/>
+                                    
                                 </div>
-                            )}
+
+                                
+                            ): (<FollowProfileButton following={this.state.following}
+                            onButtonClick={this.clickFollowButton}/>)}
                   
+
                 </div>
         );
     }
 }
-/*
-     <div className="col-md-6">
-                        {isAuthenticated().user &&
-                            isAuthenticated().user._id == user._id && (
-                                <div className="d-inline-block mt-5">
-                                    <Link
-                                        className="btn btn-raised btn-success mr-5"
-                                        to={`/user/edit/${user._id}`}
-                                    >
-                                        Edit Profile
-                                    </Link>
-                                    <button className="btn btn-raised btn-danger">
-                                        Delete Profile
-                                    </button>
-                                </div>
-                            )}
-                    </div>
-                </div>
-            </div>
-            
-        );
-    }
-}
-*/
+
 export default Profile;

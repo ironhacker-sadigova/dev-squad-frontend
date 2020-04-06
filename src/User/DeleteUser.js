@@ -55,12 +55,31 @@ class DeleteUser extends Component {
             return <Redirect to="/" />;
         }
         return (
-         
-              <button className="" onClick={this.userDeleteConfirmation}>
+                         <div className="user-profile-card">
+                  <div className="user-profile-header">
+                  </div>
+                  <div className="user-profile-avatar text-center">
+                          
+                
+                                       
+                                    
+                   <button className="" onClick={this.userDeleteConfirmation}>
                                         Delete Profile
                                     </button>
-        );
-    }
-}
+                                      
+                                  </div>
+                              
+                    
+                  </div> 
+          );
+      }
+  }
+                            
+            
+
+            
+        
+    
+
 
 export default DeleteUser;
