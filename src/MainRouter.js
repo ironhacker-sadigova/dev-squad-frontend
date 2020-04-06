@@ -34,6 +34,7 @@ import Signup from "./User/Signup";
 import Signin from "./User/Signin";
 import Profile from "./User/Profile";
 import Users from "./User/Users";
+import FindPeople from "./User/FindPeople";
 import EditProfile from "./User/EditProfile";
 import PrivateRoute from "./auth/PrivateRoute";
 
@@ -47,6 +48,7 @@ const MainRouter = () => (
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/signin" component={Signin} />
             <PrivateRoute exact path="/user/edit/:userId" component={EditProfile} />
+            <PrivateRoute exact path="/findpeople" component={FindPeople} />
             <PrivateRoute exact path="/user/:userId" component={Profile} />
         </Switch>
     </div>

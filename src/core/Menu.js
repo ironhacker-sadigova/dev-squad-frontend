@@ -67,11 +67,19 @@ const Menu = ({ history }) => (
             )}
             {isAuthenticated() && (
                 <>
+
+           <Link style={isActive(history,"/findpeople")} to = "/findpeople"> Find Users </Link>
+
                 <a href="/" 
                     style={
                                 (isActive(history, "/signup"))
                             }
                             onClick={() => signout(() => history.push("/"))}>  Exit   </a>
+
+
+
+
+
                         <Link
                             to={`/user/${isAuthenticated().user._id}`}
                             style= {isActive(history,`/user/${isAuthenticated().user._id}`)}

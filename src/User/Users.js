@@ -20,6 +20,8 @@ class Users extends Component {
             }
         });
     }
+
+
     renderUsers = users => (
         <div className="">
             {users.map((user, i) => (
@@ -29,7 +31,6 @@ class Users extends Component {
                 <img
                     src={DevBackground}
                     />
-
 
 
   <figcaption>
@@ -45,31 +46,23 @@ class Users extends Component {
                         alt={user.name}
                     />
 
-
-
-
-
-
-
-
-
-
-
-
     <h2>{user.name} </h2>
     <p> {user.email} </p>
     <Link to={`/user/${user._id}`}> View Profile</Link> 
+                        
+                            
   </figcaption>
 </figure>
                 </div>
             ))}
         </div>
     );
+
 // loop through users
     render() {
         const { users } = this.state; 
         return (
-            <div className="">
+            <div className="container">
                 <h2 className="mt-5 mb-5"> Who is in the squad ? </h2>
             {this.renderUsers(users)}
             </div>
@@ -77,3 +70,4 @@ class Users extends Component {
     }
 }
 export default Users;
+

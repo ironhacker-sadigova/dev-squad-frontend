@@ -5,6 +5,7 @@ import {read} from "./apiUser"; //; to connect to the back
 import Avatar from '../images/avatar.png';
 import DeleteUser from "./DeleteUser";
 import FollowProfileButton from "./FollowProfileButton";
+import ProfileTabs from "./ProfileTabs";
 // We will create a state with user & redirect 
 // if not loged in user redirect to signin 
 // set the state to false by default 
@@ -175,7 +176,9 @@ clickFollowButton = callApi => {// either follow or unfollow
                                 
                             ): (<FollowProfileButton following={this.state.following}
                             onButtonClick={this.clickFollowButton}/>)}
-                  
+                
+
+                  <ProfileTabs followers={user.followers} following={user.following}/>
 
                 </div>
         );
