@@ -27,19 +27,35 @@ class Users extends Component {
                 <figure className="snip1336">
 
                 <img
-                        style={{width: "auto" }}
-                        className="img-thumbnail"
-                        src={`${process.env.REACT_APP_API_URL|| ""}/user/photo/${
-                            user._id
-                        }`}
-                        onError={i => (i.target.src = `${DevBackground}`)}
-                        alt={user.name}
+                    src={DevBackground}
                     />
 
 
 
   <figcaption>
-    <img src={Avatar} alt={user.name} className="profile" />
+    
+
+  <img
+                        
+                        className="profile" style={{width:"100vh"}}
+                        src={`${process.env.REACT_APP_API_URL|| ""}/user/photo/${
+                            user._id
+                        }`}
+                        onError={i => (i.target.src = `${Avatar}`)}
+                        alt={user.name}
+                    />
+
+
+
+
+
+
+
+
+
+
+
+
     <h2>{user.name} </h2>
     <p> {user.email} </p>
     <Link to={`/user/${user._id}`}> View Profile</Link> 
