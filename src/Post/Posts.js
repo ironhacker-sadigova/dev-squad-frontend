@@ -47,7 +47,7 @@ class Posts extends Component {
 
                 
 
-<img classname ="postimg" style={{width:  "100px"}}
+<img classname ="postimg" style={{height:"250px", width: "100%"}}
         src={`${ process.env.REACT_APP_API_URL|| ""}/post/photo/${post._id}`} alt={post.title}
         onError={i => (i.target.src = `${PostBackground}`) }
 
