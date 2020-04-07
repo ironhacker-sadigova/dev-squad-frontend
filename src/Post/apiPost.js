@@ -80,7 +80,7 @@ export const deleteUserPost = (postId, token) => {
 
 export const editUserPost = (postId, token, post) => {
     console.log(postId, token, post);
-    return fetch(`${process.env.REACT_APP_API_URL}/post/${postId}`, {
+    return fetch(`${process.env.REACT_APP_API_URL|| ""}/post/${postId}`, {
         method: "PUT",
         headers: {
             Accept: "application/json",
