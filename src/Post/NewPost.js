@@ -18,7 +18,8 @@ class NewPost extends Component {
             photo:"",
             error:"",
             fileSize: 0, // BY DEFAULT 0 
-            user:{}  // EMPTY OBJECT FOR YET 
+            user:{}  ,// EMPTY OBJECT FOR YET 
+            redirectToProfile: false  // BY DEFAULT FALSE
             
         };
     }
@@ -139,12 +140,12 @@ class NewPost extends Component {
     );
 
     render() {
-        const { title, body, photo, user, error} = this.state;
+        const { title, body, photo, user, error, redirectToProfile} = this.state;
 
-      /*  if (redirectToProfile) {
-            return <Redirect to={`/user/${id}`} />;
+       if (redirectToProfile) {
+            return <Redirect to={`/user/${user._id}`} />;
         }
-
+/*
         const photoUrl = id
         ? `${process.env.REACT_APP_API_URL|| ""}/user/photo/${id}?${new Date().getTime()}`
 
