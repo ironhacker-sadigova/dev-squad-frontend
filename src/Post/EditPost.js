@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { singlePost, editUserPost } from "./apiPost";
 import { isAuthenticated } from "../auth";
 import { Redirect } from "react-router-dom";
+import PostBackground from "../images/postbackgroundbydefault.jpeg";
+
 
 class EditPost extends Component {
     constructor() {
@@ -120,7 +122,7 @@ editPostForm = (title,body)=>(
 );
 
 render() {
-   const { title, body, redirectToProfile} = this.state;
+   const { id, title, body, redirectToProfile,error} = this.state;
 
   if (redirectToProfile) {
        return <Redirect to={`/user/${isAuthenticated().user._id}`} />;
@@ -135,6 +137,26 @@ render() {
    return (
        <div className="container">
            <h2 className="mt-5 mb-5">{title}</h2>
+           
+           <div
+        className="alert alert-danger"
+        style={{ display: error ? "" : "none" }}
+    >
+        {error}
+    </div>
+    <img
+        style={{ height: "200px", width: "auto" }}
+        className="img-thumbnail"
+        src={`${
+                        process.env.REACT_APP_API_URL|| ""
+                    }/post/photo/${id}?${new Date().getTime()}`}
+                    onError={i => (i.target.src = `${PostBackground}`)}
+                    alt={title}
+    />          
+           
+           
+           
+           
            {this.editPostForm(title,body)}
         
        </div>
@@ -145,3 +167,6 @@ render() {
 
 
     export default EditPost;
+
+
+         
