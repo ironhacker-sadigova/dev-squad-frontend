@@ -79,7 +79,7 @@ class Posts extends Component {
 
 
 
-    <Link to={`/posts/${post._id}`}> View more </Link> 
+    <Link to={`/post/${post._id}`}> View more </Link> 
                         
                             
   </figcaption>
