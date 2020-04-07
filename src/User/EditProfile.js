@@ -123,7 +123,7 @@ class EditProfile extends Component {
 
                 <div className="form-group">
                   <label className="name">About</label>
-                  <input className="form-control" onChange={this.handleChange("about")} type="text" value={about} id="about"  required value={about} />
+                  <textarea className="form-control" onChange={this.handleChange("about")} type="text" value={about} id="about"  required value={about} />
                 </div>
 
                 

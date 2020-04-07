@@ -156,12 +156,17 @@ clickFollowButton = callApi => {// either follow or unfollow
                                        
 
                                        <div className="row">
-                    <div className="col md-12 mt- mb-5">
-                        <hr />
-                        <p className="lead">{user.about}</p>
-                        <hr />
+                   
+                  
+
+
+                        <textarea className="form-control"  type="text"  id="about"  required value={user.about} />
+
+
+
+
                     </div>
-                </div>
+                
 
 
                                        

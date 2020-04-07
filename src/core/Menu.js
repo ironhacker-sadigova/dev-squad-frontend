@@ -68,7 +68,8 @@ const Menu = ({ history }) => (
             {isAuthenticated() && (
                 <>
 
-           <Link style={isActive(history,"/findpeople")} to = "/findpeople"> Find Users </Link>
+           <Link style={isActive(history,"/findpeople")} to = "/findpeople"> Who to follow? </Link>
+           <Link style={isActive(history,"/post/create")} to = "/post/create"> What's on your mind? </Link>
 
                 <a href="/" 
                     style={
