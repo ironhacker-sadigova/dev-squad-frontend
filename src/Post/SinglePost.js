@@ -81,7 +81,7 @@ on {new Date(post.created).toDateString()}</p>
                         isAuthenticated().user._id === post.postedBy._id && (
                             <>
                                 
-<Link to={`/`}>  Edit Post  </Link> 
+<Link to={`/post/edit/${post._id}`}>  Edit Post  </Link> 
                            
  <button style={{color:"white"}} onClick={this.deleteConfirmed} type="button" class="btn btn-outline-default waves-effect btn-sm"> Delete Post</button>
    
