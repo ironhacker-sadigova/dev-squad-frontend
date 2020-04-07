@@ -37,6 +37,15 @@ deletePost = () => {
     });
 };
 
+deleteConfirmed = () => {
+    let answer = window.confirm(
+        " Delete Post? "
+    );
+    if (answer) {
+        this.deletePost();
+    }
+};
+
 renderPost = post => {
     const posterId = post.postedBy ? `/user/${post.postedBy._id}` : "";// userId of the one who posted the post
    // if yes we can get the id 
@@ -74,7 +83,7 @@ on {new Date(post.created).toDateString()}</p>
                                 
 <Link to={`/`}>  Edit Post  </Link> 
                            
- <button style={{color:"white"}} onClick={this.deletePost} type="button" class="btn btn-outline-default waves-effect btn-sm"> Delete Post</button>
+ <button style={{color:"white"}} onClick={this.deleteConfirmed} type="button" class="btn btn-outline-default waves-effect btn-sm"> Delete Post</button>
    
                            
                             </>
