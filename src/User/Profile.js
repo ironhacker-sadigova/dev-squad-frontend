@@ -9,6 +9,8 @@ import ProfileTabs from "./ProfileTabs";
 // We will create a state with user & redirect 
 // if not loged in user redirect to signin 
 // set the state to false by default 
+import { showPostsByUser } from "../Post/apiPost";
+
 class Profile extends Component {
     
     constructor() {
@@ -17,7 +19,8 @@ class Profile extends Component {
             user: { following: [], followers: []},
             redirectToSignin: false,
             following:false,
-            error:""
+            error:"",
+            posts:[]
         };
     }
 
@@ -62,9 +65,25 @@ clickFollowButton = callApi => {// either follow or unfollow
             } else {
                 let following = this.checkFollow(data);
                 this.setState({ user: data, following });
+                this.showPosts(data._id)
             }
         });
     };
+
+    showPosts = userId => {
+        const token = isAuthenticated().token;
+        showPostsByUser(userId, token).then(data => {
+            if (data.error) {
+                console.log(data.error);
+            } else {
+                this.setState({ posts: data });
+            }
+        });
+    };
+
+
+
+
     //We want to get user info from the backend
     // We need to grab User id & do a get request to the backend
     // when the component is mounted, then we will get userId
@@ -108,7 +127,7 @@ clickFollowButton = callApi => {// either follow or unfollow
         this.init(userId);
     }
    render() {
-        const { redirectToSignin, user } = this.state;
+        const { redirectToSignin, user,posts } = this.state;
         if (redirectToSignin) return <Redirect to="/signin" />;
     
     
@@ -148,7 +167,10 @@ clickFollowButton = callApi => {// either follow or unfollow
                 </div>
                  {isAuthenticated().user &&
                             isAuthenticated().user._id === user._id ? (
+
+                                
                                 <div className="">
+                                
                                     <Link
                                         
                                         to={`/user/edit/${user._id}`}
@@ -168,13 +190,20 @@ clickFollowButton = callApi => {// either follow or unfollow
                     </div>
                 
 
-
+                                <Link
+                                    className=" "
+                                    to={`/post/create`}
+                                >
+                                  <button className=""> Create Post</button> 
+                                </Link>
                                        
                                     <button className="">
                                        Edit Profile
                                     </button>
                                     </Link>
                                     <DeleteUser userId={user._id}/>
+
+                                     
                                     
                                 </div>
 
@@ -183,7 +212,7 @@ clickFollowButton = callApi => {// either follow or unfollow
                             onButtonClick={this.clickFollowButton}/>)}
                 
 
-                  <ProfileTabs followers={user.followers} following={user.following}/>
+                  <ProfileTabs followers={user.followers} following={user.following} posts={posts}/>
 
                 </div>
         );

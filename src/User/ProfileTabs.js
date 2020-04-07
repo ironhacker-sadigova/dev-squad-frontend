@@ -4,7 +4,7 @@ import DefaultProfile from "../images/avatar.png";
 
 class ProfileTabs extends Component {
     render() {
-        const { following, followers } = this.props;
+        const { following, followers, posts } = this.props;
         return (
             <div>
                 <div className="">
@@ -79,6 +79,17 @@ class ProfileTabs extends Component {
                     <div className="">
                         <h3 className="">Posts</h3>
                         <hr />
+                        {posts.map((post, i) => (
+                            <div key={i}>
+                                <div>
+                                    <Link to={`/post/${post._id}`}>
+                                        <div>
+                                            <p className="">{post.title}</p>
+                                        </div>
+                                    </Link>
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>
@@ -87,3 +98,5 @@ class ProfileTabs extends Component {
 }
 
 export default ProfileTabs;
+
+//     {JSON.stringify(posts)} 

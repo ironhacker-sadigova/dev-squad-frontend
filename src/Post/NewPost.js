@@ -6,7 +6,7 @@ import React, { Component } from "react";
 import { isAuthenticated } from "../auth";
 import { create } from "./apiPost";
 import { Redirect } from "react-router-dom";
-import Avatar from "../images/avatar.png";
+//import Avatar from "../images/avatar.png";
 
 // doing it individually to allow user to do changes 
 class NewPost extends Component {
