@@ -228,6 +228,8 @@ label {
   line-height: 1.4em;
   background-color: #141414;
 }
+
+
 .snip1336 * {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -236,6 +238,7 @@ label {
 
 }
 .snip1336 img {
+  
   max-width: 100%;
   vertical-align: top;
   opacity: 0.85;
@@ -245,7 +248,9 @@ label {
   background-color: #141414;
   padding: 25px;
   position: relative;
+  
 }
+
 .snip1336 figcaption:before {
   position: absolute;
   content: '';
@@ -307,6 +312,11 @@ label {
 }
 
 
+
+
+
+
+
 /* USERS PROFILE */
 
 
@@ -359,9 +369,21 @@ padding-left: 20px;
 }
 
 
+.user-profile-card .user-profile-header img {
+ 
+height: 100px;
+  width: 95vw;
+
+  
+}
+
+
+
 /*FOLLOW UNFOLLOW*/
 
 
 .followers {
   margin-top: 9vw;
 }
+
+

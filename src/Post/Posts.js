@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { list } from "./apiPost";
 import {Link} from "react-router-dom";
+import PostBackground from "../images/postbackgroundbydefault.jpeg";
 //import Avatar from '../images/avatar.png';
 //import DevBackground from "../images/usersprofile-background.jpeg";
 
@@ -28,12 +29,31 @@ class Posts extends Component {
         });
     }
 
-
-    renderPosts = posts => (
+    renderPosts = posts => {
+        return (
+            <div className="row">
+                {posts.map((post, i) => {
+                    const posterId = post.postedBy // userId of the one who posted the post
+         ? `/user/${post.postedBy._id}`// if yes we can get the id
+        : ""; 
+                 const posterName = post.postedBy // The one who posted
+                        ? post.postedBy.name // if we have the name we get them otherwise
+                        : " Unknown"; // UNKNOWN USER 
+    return (
         <div className="">
             {posts.map((post, i) => (
                 <div className="row" key={i}>
-                <figure className="snip1336">
+                <figure className="snip1336 ">
+
+                
+
+<img classname ="postimg" style={{width:  "100px"}}
+        src={`${ process.env.REACT_APP_API_URL|| ""}/post/photo/${post._id}`} alt={post.title}
+        onError={i => (i.target.src = `${PostBackground}`) }
+
+                                />
+
+
 
 
 
@@ -42,8 +62,23 @@ class Posts extends Component {
 
 
     <h2>{post.title} </h2>
-    <p> {post.body} </p>
+    <p> {post.body.substring(0, 100)} </p> 
    
+    
+
+ <p className="">
+  Posted by {" "} 
+         <Link to={`${posterId}`}>
+                {posterName} {" "}
+        </Link> 
+
+        <p>
+  on {new Date(post.created).toDateString()}</p>
+                                </p>
+
+
+
+
     <Link to={`/posts/${post._id}`}> View more </Link> 
                         
                             
@@ -52,14 +87,25 @@ class Posts extends Component {
                 </div>
             ))}
         </div>
-    );
+
+ 
+                            
+                    );
+                })}
+            </div>
+        );
+    };
+
+
+
+
 
 // loop through users
     render() {
         const { posts } = this.state; 
         return (
             <div className="container">
-                <h2 className="mt-5 mb-5"> Posts </h2>
+                <h2 className="mt-5 mb-5"> What's new in the squad? </h2>
             {this.renderPosts(posts)}
             </div>
         );
@@ -67,11 +113,7 @@ class Posts extends Component {
 }
 export default Posts;
 
-      /*          <img
-                    src={DevBackground}
-                    />
-*/
-
+   
 /*<img
                         
                         className="profile" style={{width:"100vh"}}
