@@ -1,12 +1,14 @@
 import React, { Component } from "react";
-import {singlePost} from './apiPost';
-import { Link } from "react-router-dom";
+import {singlePost, deleteUserPost} from './apiPost';
+import { Link, Redirect } from "react-router-dom";
 import PostBackground from "../images/postbackgroundbydefault.jpeg";
+import { isAuthenticated } from "../auth";
 
 
 class SinglePost extends Component {
     state = {
-        post: "" // by default empty
+        post: "" ,// by default empty
+        redirectToHome:false
     };
 
 // TO POPULATE THE STATE USING COMPONENTDIDMOUNT
@@ -20,6 +22,19 @@ componentDidMount = () => {
 this.setState({post: data});
         }
     }) ;
+};
+
+
+deletePost = () => {
+    const postId = this.props.match.params.postId;
+    const token = isAuthenticated().token;
+    deleteUserPost(postId, token).then(data => {
+        if (data.error) {
+            console.log(data.error);
+        } else {
+            this.setState({ redirectToHome: true });
+        }
+    });
 };
 
 renderPost = post => {
@@ -51,8 +66,21 @@ Posted by {" "}
 <p>
 on {new Date(post.created).toDateString()}</p>
                         </p>
-
 <Link to={`/`}>  Back to posts  </Link> 
+
+{isAuthenticated().user &&
+                        isAuthenticated().user._id === post.postedBy._id && (
+                            <>
+                                
+<Link to={`/`}>  Edit Post  </Link> 
+                           
+ <button style={{color:"white"}} onClick={this.deletePost} type="button" class="btn btn-outline-default waves-effect btn-sm"> Delete Post</button>
+   
+                           
+                            </>
+                        )}
+
+
                      
 </figcaption>
 </figure>
@@ -64,6 +92,9 @@ on {new Date(post.created).toDateString()}</p>
         };
 
 render() {
+    if (this.state.redirectToHome){
+        return <Redirect to={`/`}/>
+    }
     const { post } = this.state;
     return (
         <div className="container">

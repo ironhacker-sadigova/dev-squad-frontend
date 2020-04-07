@@ -41,11 +41,10 @@ class Posts extends Component {
                         : " Unknown"; // UNKNOWN USER 
     return (
         <div className="">
-            {posts.map((post, i) => (
                 <div className="row" key={i}>
                 <figure className="snip1336 ">
 
-                
+
 
 <img classname ="postimg" style={{height:"250px", width: "100%"}}
         src={`${ process.env.REACT_APP_API_URL|| ""}/post/photo/${post._id}`} alt={post.title}
@@ -85,7 +84,7 @@ class Posts extends Component {
   </figcaption>
 </figure>
                 </div>
-            ))}
+            
         </div>
 
  
