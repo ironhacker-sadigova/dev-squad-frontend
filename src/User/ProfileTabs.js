@@ -6,14 +6,12 @@ class ProfileTabs extends Component {
     render() {
         const { following, followers, posts } = this.props;
         return (
-            <div>
-                <div className="">
-                    <div className="">
-                        <h3 className="followers">Followers</h3>
+            <div className="profileTabs">
+                      <div className="profileTabsContent">  <h3 className= "profileTabsTitle">Followers</h3>
                         <hr />
                         {followers.map((person, i) => (
                             <div key={i}>
-                                <div>
+                              
                                     <Link to={`/user/${person._id}`}>
                                         <img
                                             style={{
@@ -32,22 +30,22 @@ class ProfileTabs extends Component {
                                             alt={person.name}
                                         />
                                         <div>
-                                            <p className="">
+                                            <p>
                                                 {person.name}
                                             </p>
-                                        </div>
+                                      </div>
                                     </Link>
                                 </div>
-                            </div>
+                            
                         ))}
-                    </div>
+                   </div>
 
-                    <div className="">
-                        <h3 className="">Following</h3>
+
+                     <div className="ProfileTabsContent">   <h3 className="profileTabsTitle">Following</h3>
                         <hr />
                         {following.map((person, i) => (
                             <div key={i}>
-                                <div>
+                             
                                     <Link to={`/user/${person._id}`}>
                                         <img
                                             style={{
@@ -66,32 +64,32 @@ class ProfileTabs extends Component {
                                             alt={person.name}
                                         />
                                         <div>
-                                            <p className="">
+                                            <p>
                                                 {person.name}
                                             </p>
                                         </div>
                                     </Link>
-                                </div>
+                               
                             </div>
                         ))}
                     </div>
 
-                    <div className="">
-                        <h3 className="">Posts</h3>
+                    <div className="ProfileTabsContent">
+                        <h3 className="profileTabsTitle">Posts</h3>
                         <hr />
                         {posts.map((post, i) => (
                             <div key={i}>
-                                <div>
+                              
                                     <Link to={`/post/${post._id}`}>
                                         <div>
-                                            <p className="">{post.title}</p>
+                                            <p>{post.title}</p>
                                         </div>
                                     </Link>
-                                </div>
+                                
                             </div>
                         ))}
                     </div>
-                </div>
+               
             </div>
         );
     }

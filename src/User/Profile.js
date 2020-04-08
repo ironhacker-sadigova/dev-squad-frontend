@@ -151,7 +151,7 @@ clickFollowButton = callApi => {// either follow or unfollow
                             alt={user.name}
                         />                        
                              </div>
-                <div className="row">
+                <div className="profileDescription">
                   <div className="text-center">
                     <h4> {user.name}</h4>
                     <small>{`Joined ${new Date(
@@ -162,6 +162,13 @@ clickFollowButton = callApi => {// either follow or unfollow
                     <p>
                       <small>{user.email}</small>
                     </p>
+
+                    <div className="about">
+
+                   <input className="form-control text-center" style={{color:"lightseagreen"}} type="text"  id="about"  required value={user.about} />
+
+               </div>
+
                     </div>
                   </div>
                 </div>
@@ -176,30 +183,18 @@ clickFollowButton = callApi => {// either follow or unfollow
                                         to={`/user/edit/${user._id}`}
                                     >
                                        
-
-                                       <div className="row">
-                   
-                  
-
-
-                        <textarea className="form-control"  type="text"  id="about"  required value={user.about} />
-
-
-
-
-                    </div>
                 
 
                                 <Link
                                     className=" "
                                     to={`/post/create`}
                                 >
-                                  <button className=""> Create Post</button> 
+                                
+                             <div className="flexbtn">   <button  type="button" className="btn btn-outline-secondary">Create Post</button></div>
                                 </Link>
                                        
-                                    <button className="">
-                                       Edit Profile
-                                    </button>
+                                <div className="flexbtn"> <button type="button" className="btn btn-outline-secondary">Edit Profile</button></div>
+
                                     </Link>
                                     <DeleteUser userId={user._id}/>
 
@@ -210,7 +205,6 @@ clickFollowButton = callApi => {// either follow or unfollow
                                 
                             ): (<FollowProfileButton following={this.state.following}
                             onButtonClick={this.clickFollowButton}/>)}
-                
 
                   <ProfileTabs followers={user.followers} following={user.following} posts={posts}/>
 

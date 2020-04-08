@@ -52,7 +52,7 @@ class FindPeople extends Component {
     };
     
     renderUsers = users => (
-        <div className="">
+        <div className="flexrow">
             {users.map((user, i) => (
                 <div className="row" key={i}>
                 <figure className="snip1336">

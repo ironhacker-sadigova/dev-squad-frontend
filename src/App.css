@@ -325,7 +325,7 @@ label {
 }
 
 .user-profile-card .user-profile-header {
-  background: url("https://images.unsplash.com/photo-1497005367839-6e852de72767?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjF9&auto=format&fit=crop&w=1347&q=80");
+  background: url("https://images.unsplash.com/photo-1488409688217-e6053b1e8f42?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1332&q=80");
   background-size: cover ;
 margin-right: auto;
 margin-left: auto;
@@ -487,3 +487,48 @@ height: 100px;
   justify-content: space-around;
   flex-wrap: wrap;
 }
+
+
+/* PROFILE PAGE */
+
+.profileDescription {
+
+  margin-top: 20px;
+
+}
+
+.profilePageButtons  {
+  margin:20px;
+}
+
+.about{
+  margin: 50px;
+}
+
+.flexbtn {
+  display: flex;
+  justify-content: center;
+}
+
+.flexbtnOtherUser{
+ display: flex;
+ position: relative;
+ left: 48vw; 
+ 
+
+}
+
+.profileTabs{
+  display:flex;
+  width:100%;
+  justify-content: space-around;
+ 
+}
+
+.profileTabsTitle {
+  margin: 30px;
+  font-size: 16px;
+  font-weight: bolder;
+  color:lightslategray;
+}
+

@@ -14,16 +14,16 @@ class FollowProfileButton extends Component {
         return (
             <div className="d-inline-block">
                 {!this.props.following ? (
-                    <button
+                   <div className="flexbtnOtherUser"> <button  type="button" className="btn btn-outline-secondary"
                         onClick={this.followClick}
-                        className="btn "
+                        
                     >
                         Follow
-                    </button>
+                    </button> </div>
                 ) : (
-                    <button onClick={this.unfollowClick} className="btn ">
+                    <div className="flexbtnOtherUser"> <button onClick={this.unfollowClick} className="btn ">
                         UnFollow
-                    </button>
+                    </button></div>
                 )}
             </div>
         );
