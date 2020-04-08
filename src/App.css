@@ -65,7 +65,7 @@ h1 {
   z-index: 1;
   bottom: 0;
   left: -30%; /* at least width of .menu a */
-  width: 25%;
+  width: 20%;
   height: 50px;
   box-sizing: border-box;
   background: #fff;
@@ -76,13 +76,13 @@ h1 {
   left: 0%; 
 }
 .menu a:nth-child(2):hover ~ .marca {
-  left: 25%; /* 1/4 total width */
+  left: 10%; /* 1/4 total width */
 }
 .menu a:nth-child(3):hover ~ .marca {
-  left: 50%; /* 2/4 total width */
+  left: 30%; /* 2/4 total width */
 }
 .menu a:nth-child(4):hover ~ .marca {
-  left: 75%; /* 3/4 total width */
+  left: 50%; /* 3/4 total width */
 }/* SIGNUP */ @function remy($value) {
   @return ($value / 16px) * 1rem;
 }
