@@ -286,7 +286,10 @@ label {
   bottom: 100%;
   left: 25px;
   z-index: 1;
-  max-width: 90px;
+  min-width: 110px;
+  max-width: 110px;
+  min-height: 100px;
+  max-height: 100px;
   opacity: 1;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
 }
@@ -337,11 +340,13 @@ height: 300px;
   top: -90px;
   margin-bottom: -100px;
   padding: 0 15px;
+  
 }
 
 .user-profile-card .user-profile-avatar img {
+  
   width: 200px;
-  height: 200px;
+  height: 00px;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
@@ -474,3 +479,11 @@ height: 100px;
  width: 100%;
 }
 
+
+/*posts*/
+
+.flexrow{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}

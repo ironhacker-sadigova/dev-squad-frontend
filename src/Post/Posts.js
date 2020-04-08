@@ -31,7 +31,7 @@ class Posts extends Component {
 
     renderPosts = posts => {
         return (
-            <div className="row">
+            <div className="flexrow">
                 {posts.map((post, i) => {
                     const posterId = post.postedBy // userId of the one who posted the post
          ? `/user/${post.postedBy._id}`// if yes we can get the id
@@ -98,8 +98,7 @@ class Posts extends Component {
 
 
 
-
-// loop through users
+// loop through posts
     render() {
         const { posts } = this.state; 
         return (
